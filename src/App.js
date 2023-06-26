@@ -140,30 +140,4 @@
 
 // export default App;
 ////////////////////////////////////////////////// day 4_25
-import React from 'react'
 
-function App() {
-  return (
-    <>
-    <h1>React- Day -4 : React components</h1>
-    <pre>
-    Contents:
-Components - In depth
-Component life cycle
-Stateful and stateless components
-Reusable components 
-Passing dynamic data to component
-Introduction to Hook
-Pre-read:
-https://www.npmjs.com/package/react-router-dom
-
-    </pre>
-    
-    
-    
-    
-    </>
-  )
-}
-
-export default App
