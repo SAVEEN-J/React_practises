@@ -1,5 +1,9 @@
 // without React Router
 import React, { useState } from 'react';
+// import { BrowserRouter as Router} from 'react-router-dom';
+// import { Link, BrowserRouter as Router} from 'react-router-dom';
+
+
 import { Link, Route, BrowserRouter as Router, Routes, useParams } from 'react-router-dom';
 
 function Home() {
@@ -11,6 +15,7 @@ function Home() {
 }
 
 function Note({notes}) {
+  //useParams is usedto get parameter in link 2.31.12
   const id = useParams().id;
   const note = notes.find(n => n.id === Number(id));
 
@@ -66,19 +71,21 @@ function App() {
   };
 
   return (
+    // step1 rout no use a itsis not shgowing history   
+    //instant oif a link we use Link 
     <Router>
-      <div>
-        <Link to='/' style={padding}>home</Link>
-        <Link to='/notes' style={padding}>notes</Link>
-        <Link to='/users' style={padding}>users</Link>
-      </div>
+          <div>
+            <Link to='/' style={padding}>home</Link>
+            <Link to='/notes' style={padding}>notes</Link>
+            <Link to='/users' style={padding}>users</Link>
+          </div>
 
-      <Routes>
-        <Route path='/notes/:id' element={ <Note notes={notes}/> } />
-        <Route path='/users' element={ <Users /> } />
-        <Route path='/notes' element={<Notes notes={notes} /> } />
-        <Route path='/' element={ <Home /> } />
-      </Routes>
+        <Routes>
+          <Route path='/notes/:id' element={ <Note notes={notes}/> } />
+          <Route path='/users' element={ <Users /> } />
+          <Route path='/notes' element={<Notes notes={notes} /> } />
+          <Route path='/' element={ <Home /> } />
+        </Routes>
     </Router>
   )
 }
