@@ -1,109 +1,245 @@
+// useRef - hook: to create a mutable reference to an element or a value that persists across render cycles.
+// Example 1: focus the input text book on click of a button
 
+//  import React, { useRef } from 'react';
 
-//   Session task – profile name changes
+// function App() {
 
-//   Implement a React component that allows users to change their profile name using the Context API. 
-//   - the component should consist of two parts: a parent component called App and
-//   - a child component called Profile.
+//   const inputRef = useRef(null);
 
-//   The App component should:
-//     - Import necessary dependencies from the React library
-//     - Create a context object using the createContext function from React.
-//     - Define a state variable called profileName using the useState hook and set its initial value to an empty string.
-//     - Wrap the Profile component with the context provider component, passing the profileName state and its corresponding setter function as the vallue prop.
-
-//   The Profile component should:
-//     - Import necessary dependencies from the React library
-//     - Use the useContext hook to access the profileName state variable and its setter function from the context.
-//     - Render an input field where users can enter their profile name, with its value set to the profileName state variable.
-//     - Add an onChange event handler to the input field that updates the profileName state variable with the entered value using the setter function.
-//     - Make sure to export the App component as the default import.
-// */
-
-// Import necessary dependencies from the React library
-
-
-// import React, { createContext, useContext, useState } from 'react';
-
-// // Create a context object using the createContext function from React.
-// const ProfileContext = createContext();
-
-// // The Profile component
-// function Profile() {
-//   // Use the useContext hook to access the profileName state variable and its setter function from the context.
-//   const { profileName, setProfileName } = useContext(ProfileContext);
-
-//   // Add an onChange event handler to the input field that updates the profileName state variable with the entered value using the setter function.
-//   let onChangeProfileNameHandler = (event) => {
-//     setProfileName(event.target.value);
-//     // console.log(event.target.value);
+//   let handleButtonClick = () => {
+//     // handle the input text
+//     inputRef.current.focus();
 //   }
 
-//   // Render an input field where users can enter their profile name, with its value set to the profileName state variable.
 //   return (
 //     <div>
-//       <h2>Profile Name: { profileName }</h2>
-//       <input
-//         type='text'
-//         value={profileName}
-//         onChange={onChangeProfileNameHandler}
-//       />
+//       <input type='text' ref={inputRef} />
+//       <button onClick={handleButtonClick}>Focus Input</button>
 //     </div>
 //   )
+// }
+
+// export default App;
+
+// Example 2: 
+//  import React, { useRef, useState } from 'react';
+
+// function App() {
+
+//   const inputRef = useRef(null);
+//   const [text, setText] = useState('no text');
+
+//   let handleButtonClick = () => {
+//     // get the value of the input text box
+//     let value = inputRef.current.value;
+//     setText(value);
+//     console.log(inputRef);
+//   }
+
+//   return (
+//     <div>
+//       <input type='text' ref={inputRef} />
+//       <button onClick={handleButtonClick}>Get Text</button>
+
+//       <p>Entered Text: { text }</p>
+//     </div>
+//   )
+// }
+
+// export default App;
+//auto fous
+// import React, { useEffect, useRef } from 'react';
+
+// function App() {
+
+//   const inputRef = useRef(null);
+
+//   useEffect(() => {
+//     inputRef.current.focus();
+//   }, []);
+// //[] dependiny isempty 
+//   return (
+//     <div>
+//       <input type='text' ref={inputRef} />Get txt
+    
+//     </div>
+//   )
+// }
+
+// export default App;
+
+///countincress
+// import React, { useRef, useState } from 'react';
+
+// function App() {
+
+//   const [count, setCount] = useState(0);
+//   const previousCountRef = useRef(null);
+
+//   let handleIncrement = () => {
+//     // console.log(previousCountRef, count);
+//     previousCountRef.current = count;
+//     // console.log(previousCountRef, count);
+//     setCount((prevCount) => prevCount + 1);
+//     // console.log(previousCountRef, count);
+//   }
+
+//   return (
+//     <div>
+//       <p>Current Count: { count } </p>
+//       <p>Previous Count: { previousCountRef.current} </p>
+//       <button onClick={handleIncrement}>Increment</button>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// import React, { useEffect, useRef } from 'react';
+
+// function App() {
+
+//   const sharedRef = useRef(null);
+
+//   useEffect(() => {
+//     console.log(sharedRef);
+//   }, []);
+
+//   return (
+//     <div>
+//       <input type='text' ref={sharedRef} />
+//       <button ref={sharedRef}>Click</button>
+//       <span ref={sharedRef}>useRef demonstration</span>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// useEffect examples
+// without dependency list
+// import React, { useEffect } from 'react';
+
+// function App() {
+
+//   // this effect runs once, after the component mounts
+//   useEffect(() => {
+//     console.log('component mounted');
+//   }, []);
+
+//   return (
+//     <div>
+//       App Component
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// with a single dependency
+
+// import React, { useEffect, useState } from 'react';
+
+// function App() {
+
+//   const [count, setCount] = useState(0);
+
+//   // runs every time
+//   useEffect(() => {
+//     console.log('count: ', count);
+//   }, [count]);
+
+//   let buttonClickHandler = () => {
+//    setCount(count + 1);
+//   }
+
+//   return (
+//     <div>
+//       <p>Count: {count}</p>
+//       <button onClick={buttonClickHandler}>Increment</button>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+
+// useReducer hook : complex state management (multiple actions or transitions)
+// import React, { useState } from 'react';
+
+// function App() {
+
+//   const [count, setCount] = useState(0);
+
+//   return (
+//     <div>
+//       <p>Count: { count }</p>
+//       <button onClick={() => setCount(count+1)}>Increment</button>
+//       <button onClick={() => setCount(count-1)}>Decrement</button>
+//       <button onClick={() => setCount(0)}>Reset</button>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// import React, { useReducer, useState } from 'react';
+
+// // set an initial state
+// const initialState = {count: 0};
+
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case 'increment':
+//       return { count: state.count + 1 };
+//     case 'decrement':
+//       return { count: state.count - 1 };
+//     case 'reset':
+//       return { count: 0 };
+//     default:
+//       throw new Error();
+//   }
 // }
 
 // function App() {
 
-//   // Define a state variable called profileName using the useState hook and set its initial value to an empty string.
-//   const [profileName, setProfileName] = useState('');
+//   const [state, dispatch] = useReducer(reducer, initialState);
 
-//   // Wrap the Profile component with the context provider component, passing the profileName state and its corresponding setter function as the vallue prop.
 //   return (
 //     <div>
-//       <ProfileContext.Provider value={{profileName, setProfileName}}>
-//         <Profile />
-//       </ProfileContext.Provider>
+//       <p>Count: { state.count  }</p>
+//       <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+//       <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+//       <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
 //     </div>
 //   )
 // }
 
-// // Make sure to export the App component as the default import.
-// export default App;
+//  export default App;
 
+// toggle button
+import React, { useReducer } from 'react';
 
-import React, { useContext, useState } from 'react'
-import { createContext } from 'react'
+const initialState = { isActive: false };
 
-const context=createContext();
-function Profile(params) {
-   const{profileName,setProfileName}=useContext(context)
-
-   let hadleChange=(e)=>{
-    setProfileName(e.target.value)
-
-
-   }
-  return(
-    <>
-  <h1>this is my profileName: {profileName}</h1>
-    <input type='text'  value={profileName} onChange={hadleChange} />
-    </>
-  )
-  
+function reducer(state, action) {
+  switch (action.type) {
+    case 'toggle':
+      return { isActive: !state.isActive };
+  }
 }
 
 function App() {
-  const[profileName,setProfileName]=useState("GUEST");
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-   <>
-  <context.Provider value={{profileName,setProfileName}}>
-    <Profile/>
-
-
-   </context.Provider>
-  
-   </>
+    <div>
+      <p>Active: { state.isActive ? 'Yes': 'No' } </p>
+      <button onClick={() => dispatch({type: 'toggle'})}>Toggle</button>
+    </div>
   )
 }
 
-export default App
+export default App;
