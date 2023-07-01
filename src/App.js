@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
+import { useReducer } from "react";
 
-//4.component createand display content
-function Notes({note}) {
-  return(<>
-   <li>{note.content}</li>
-   </>)
-  
-}
-function App(props) {//1..passing data from index.js
+//define reducer
+const addReducer=(state,action)
+// create a store
+const store = createStore
+console.log(store);
 
-  const[notes,setNotes]=useState(props.notes)///2.create state
+function App() {//1..passing data from index.js
+
+  const[notes,setNotes]=useReducer()///2.create state
 
   // console.log(notes);
   ///3.use map to loop each data and display in li tag and create ione new component
@@ -20,21 +20,18 @@ function App(props) {//1..passing data from index.js
   }
   return (
     <>
-    <h1>notes</h1>
-    <ul>
-     {notes.map(note=>
-     <Notes key={note.id} note={note} />
-      
-      )} 
-
-    </ul>
-    <form onSubmit={AddNewNotes}>
-        <input />
-        <button type='submit'> Add Notes</button>
+    <h1>Redux</h1>
+ 
+   
+        <button type='button'> Good</button>
+        <button type='button'> Ok</button>
+        <button type='button'> Bad</button>
+        <button type='button' > Reset stats</button>
 
 
 
-      </form>
+
+    
 
     
     </>
