@@ -23,7 +23,8 @@ function App() {
     axios
     .get('http://localhost:3001/notes/')
 
-    .then(responce=>setNotes(responce.data))
+    
+   .then(responce=>setNotes(responce.data))
   });
 
   // create a reference for the first input text box
