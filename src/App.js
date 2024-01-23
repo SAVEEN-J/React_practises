@@ -5,7 +5,11 @@ function Notes({note}) {
   // console.log(note);
   return(
     <>
+  
+    <ul>
     <li>{note.content} {note.important} {note.selectbutton}</li>
+  
+    </ul>
     </>
   )
   
@@ -18,12 +22,12 @@ function App(props) {
   const[onOffSelect,setonOffSelect]=useState('Select on or off')
   const[showStatus,setShowStatus]=useState('all')
 
-
+//create a ref for firdt text box
   const newnoteRef=useRef("")
 
 
 
-  // get data
+  // get the data
   useEffect(()=>{
        setNotes(props.notes)
   },[])
@@ -57,7 +61,7 @@ function App(props) {
        
         setNewote(event.target.value);
         
-       console.log(newNote);
+      //  console.log(newNote);
       }
       let handleboolChange = (event) => {
        
@@ -75,7 +79,7 @@ function App(props) {
       
         setShowStatus(event.target.value);
      
-         console.log(event.target.value);
+        //  console.log(event.target.value);
       }
     
 let filterNotes=(notes,status)=>{
@@ -91,16 +95,12 @@ switch (status) {
 }
 
   }
-
-
-
-
  const notesFilter=filterNotes(notes,showStatus)
 
   return(
     <>
     
-    <h2>Notes</h2>
+    <h2 style={{backgroundColor: "lightblue"}}>Notes filter Option</h2>
     <label>
     <input type='radio' name='filter' value="all" checked={showStatus ==='all'} onChange={handleStatuChange}/> All notes
     </label>
@@ -113,7 +113,7 @@ switch (status) {
     <label>
     <input type='radio' name='filter' value="on" checked={showStatus ==='on'} onChange={handleStatuChange}/>current notes in ON
     </label>
-  
+    <h1>NOTES</h1>
     <ul>
       {notesFilter.map((note=>
      
