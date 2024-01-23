@@ -87,7 +87,7 @@ switch (status) {
   case 'nonimp':
     return notes.filter(note =>note.important===false);
     case 'on':
-      return notes.filter(note =>note.selectbutton=="on");
+      return notes.filter(note =>note.selectbutton==="on");
 }
 
   }
