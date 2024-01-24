@@ -2,7 +2,10 @@ import React from 'react';
 
 function Home() {
   return (
-    <div>Note App</div>
+    <div>
+
+<h1> Read Notes</h1>
+    </div>
   )
 }
 

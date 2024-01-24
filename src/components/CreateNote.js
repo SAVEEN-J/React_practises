@@ -2,7 +2,8 @@ import React from 'react'
 
 function CreateNote({addNote,newNoteContent,handleNoteChange,newNoteContentRef,handleSelectChange,newNoteImportant}) {
   return (
-    <div>    {/* add a simple form for adding notes */}
+    <div>  
+      <h1> Create Notes</h1>  {/* add a simple form for adding notes */}
     <form onSubmit={addNote}>
       <input
         value={newNoteContent}

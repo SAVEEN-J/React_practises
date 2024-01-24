@@ -1,9 +1,15 @@
 // A Simple Note taking Application
 import axios from 'axios';
-
 import React, { useEffect, useRef, useState } from 'react';
 import CreateNote from './components/CreateNote';
-import { Route, Router, Routes } from 'react-router';
+import EditNote from './components/EditNote';
+
+  import {
+    BrowserRouter as Router,
+    Route,
+    Routes
+  } from 'react-router-dom';
+  
 import ReadNotes from './components/ReadNotes';
 import { Link } from 'react-router-dom';
 import Home from './components/Home';
@@ -16,7 +22,9 @@ function App() {
   const [newNoteContent, setNewNoteContent] = useState('');
   const [newNoteImportant, setNewNoteImportant] = useState('');
   const [showStatus, setShowStatus] = useState('all');
-
+ const padding ={
+  padding:15
+ };
   // get the data
   //runs only once: for the first time []
   //runs always
@@ -26,7 +34,7 @@ function App() {
     axios
     .get('http://localhost:3002/notes/')
    .then(responce => setNotes(responce.data))
-  });
+  },[]);
 
   // create a reference for the first input text box
   const newNoteContentRef = useRef(null);
@@ -66,9 +74,12 @@ function App() {
   return (
  <Router>
   <div>
-    <Link to="/">Home </Link>
-    <Link to="/read">Read Notes</Link>
-    <Link to="/create">Create Notes</Link>
+    <Link style={padding} to="/">Home </Link>
+    <Link style={padding} to="/read">Read Notes</Link>
+    <Link style={padding} to="/create">Create Notes</Link>
+    <Link style={padding} to="/edit">Edit Notes</Link>
+    {/* <Link style={padding} to="/update">Update Notes</Link> */}
+
 
 
   </div>
@@ -76,6 +87,9 @@ function App() {
       <Route path='/read' element={<ReadNotes notes={notes} showStatus={showStatus} handleStatusChange={handleStatusChange} />} />
       <Route path='/create' element={ <CreateNote addNote={addNote} newNoteContent={newNoteContent} handleNoteChange={handleNoteChange} newNoteContentRef={newNoteContentRef} handleSelectChange={handleSelectChange} newNoteImportant={newNoteImportant} />} />
       <Route path='/' element={<Home />} />
+      <Route path='/edit' element={<EditNote />} />
+      {/* <Route path='/' element={<Home />} /> */}
+
     </Routes>
 </Router>
     
