@@ -73,7 +73,7 @@ function App() {
 
   </div>
     <Routes>
-      <Route path='/read' element={<ReadNotes showStatus={showStatus} handleStatusChange={handleStatusChange} notes={notes}/>} />
+      <Route path='/read' element={<ReadNotes notes={notes} showStatus={showStatus} handleStatusChange={handleStatusChange} />} />
       <Route path='/create' element={ <CreateNote addNote={addNote} newNoteContent={newNoteContent} handleNoteChange={handleNoteChange} newNoteContentRef={newNoteContentRef} handleSelectChange={handleSelectChange} newNoteImportant={newNoteImportant} />} />
       <Route path='/' element={<Home />} />
     </Routes>
