@@ -32,7 +32,7 @@ function App() {
     // setNotes(props.notes);
     ///read the data in CURD READ OPRATION
     axios
-    .get('http://localhost:3002/notes/')
+    .get('http://localhost:3001/notes/')
    .then(responce => setNotes(responce.data))
   },[]);
 
@@ -51,7 +51,7 @@ function App() {
     // setNotes(notes.concat(noteObject));
     //send thbe record to json usinf post method
     axios
-    .post('http://localhost:3002/notes', noteObject)
+    .post('http://localhost:3001/notes', noteObject)
     // .then(response => console.log(response))
     // clear the input text box
     setNewNoteContent('');
